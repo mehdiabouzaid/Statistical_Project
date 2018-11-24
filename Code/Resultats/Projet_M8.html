@@ -1,0 +1,1119 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Projet_M8</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-06-30"><meta name="DC.source" content="Projet_M8.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Donn&eacute;es projet nettoy&eacute;es</a></li><li><a href="#2">histogramme variable Age</a></li><li><a href="#3">camembert variable Drogue</a></li><li><a href="#5">histogramme variable Genre</a></li><li><a href="#6">Boites &agrave; moustache</a></li><li><a href="#7">Carte</a></li><li><a href="#8">R&eacute;gression multiple Drogue en fonction de Comportement</a></li><li><a href="#9">R&eacute;gression multiple Comportement en fonction de Drogue</a></li><li><a href="#10">Diagnostic r&eacute;gression</a></li><li><a href="#11">ACP</a></li><li><a href="#12">Projections des nuages de points</a></li><li><a href="#13">Projections des variables</a></li><li><a href="#14">R&eacute;gression avec donn&eacute;es de l'ACP</a></li><li><a href="#17">R&eacute;gressions sans valeurs aberrantes (sans et avec ACP)</a></li><li><a href="#18">Comptage des apparitions de 0,1,2 etc.. pour chaque drogue</a></li><li><a href="#19">Test du chi2</a></li><li><a href="#20">Test corr&eacute;lation Drogue</a></li></ul></div><h2>Donn&eacute;es projet nettoy&eacute;es<a name="1"></a></h2><pre class="codeinput">close <span class="string">all</span>
+clear <span class="string">all</span>
+load(<span class="string">'Project_sans_Semer.mat'</span>)
+</pre><h2>histogramme variable Age<a name="2"></a></h2><pre class="codeinput">figure(1)
+C = categorical(Age,[-0.95197 -0.07854 0.49788 1.09449 1.82213 2.59171],{<span class="string">'18-24'</span>,<span class="string">'25-34'</span>,<span class="string">'35-44'</span>,<span class="string">'45-54'</span>,<span class="string">'55-64'</span>,<span class="string">'65+'</span>});
+h = histogram(C,<span class="string">'BarWidth'</span>,0.5);
+</pre><img vspace="5" hspace="5" src="Projet_M8_01.png" alt=""> <h2>camembert variable Drogue<a name="3"></a></h2><pre class="codeinput">figure(2)
+X = [sum(Alcool) sum(Amphet) sum(Amyl) sum(Benzos) sum(Caff) sum(Cannabis) sum(Choc) sum(Coke) sum(Crack) sum(Ecstasy) sum(Heroin) sum(Ketamine) sum(Legalh), sum(LSD) sum(Meth) sum(Mushrooms) sum(Nicotine) sum(VSA)];
+labels= {<span class="string">'Alcohol'</span>,<span class="string">'Amphet'</span>,<span class="string">'Amyl'</span>,<span class="string">'Benzos'</span>,<span class="string">'Caff'</span>,<span class="string">'Cannabis'</span>,<span class="string">'Choc'</span>,<span class="string">'Coke'</span>,<span class="string">'Crack'</span>,<span class="string">'Ecstasy'</span>,<span class="string">'Heroin'</span>,<span class="string">'Ketamine'</span>,<span class="string">'Legalh'</span>,<span class="string">'LSD'</span>,<span class="string">'Meth'</span>,<span class="string">'Mushrooms'</span>,<span class="string">'Nicotine'</span>,<span class="string">'VSA'</span>};
+p = pie(X,labels);
+</pre><img vspace="5" hspace="5" src="Projet_M8_02.png" alt=""> <pre class="codeinput">n=size(Age);
+<span class="comment">%D = categorical(Gender,[0.48246 -0.48246],{'Femme','Homme'})</span>
+<span class="comment">%h = histogram(D,'BarWidth',0.5)</span>
+</pre><h2>histogramme variable Genre<a name="5"></a></h2><pre class="codeinput">Hommes=[];
+Femmes=[];
+AgeHomme=[];
+AgeFemme=[];
+<span class="keyword">for</span> i=1:n
+    <span class="keyword">if</span> Gender(i)&lt;0
+        Hommes(i)=1;
+        AgeHomme(i)=Age(i);
+    <span class="keyword">else</span>
+        Femmes(i)=1;
+        AgeFemme(i)=Age(i);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+figure(3)
+D=categorical(AgeHomme,[-0.95197 -0.07854 0.49788 1.09449 1.82213 2.59171],{<span class="string">'18-24'</span>,<span class="string">'25-34'</span>,<span class="string">'35-44'</span>,<span class="string">'45-54'</span>,<span class="string">'55-64'</span>,<span class="string">'65+'</span>});
+E=categorical(AgeFemme,[-0.95197 -0.07854 0.49788 1.09449 1.82213 2.59171],{<span class="string">'18-24'</span>,<span class="string">'25-34'</span>,<span class="string">'35-44'</span>,<span class="string">'45-54'</span>,<span class="string">'55-64'</span>,<span class="string">'65+'</span>});
+histogram(D,<span class="string">'BarWidth'</span>,0.5);hold <span class="string">on</span>
+histogram(E,<span class="string">'BarWidth'</span>,0.5,<span class="string">'facealpha'</span>,.4);
+legend(<span class="string">'Hommes'</span>,<span class="string">'Femmes'</span>, <span class="string">'Location'</span>, <span class="string">'NE'</span>)
+</pre><img vspace="5" hspace="5" src="Projet_M8_03.png" alt=""> <h2>Boites &agrave; moustache<a name="6"></a></h2><pre class="codeinput">Drogue = [Alcool Amphet Amyl Benzos Caff Cannabis Choc Coke Crack Ecstasy Heroin Legalh LSD Meth Mushrooms Nicotine VSA];
+F = [];
+t= 1;
+figure(4)
+boxplot(sum(Drogue'))
+<span class="keyword">for</span> i=1:n
+    <span class="keyword">if</span> Age(i)== -0.95197
+        F(t)= sum(Drogue(i,:));
+        t = t+1;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+boxplot(F); hold <span class="string">on</span>
+G=[];
+t=1;
+<span class="keyword">for</span> i=1:n
+    <span class="keyword">if</span> Age(i)== -0.07854
+        G(t)= sum(Drogue(i,:));
+        t = t+1;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+figure(5)
+boxplot(G)
+H=[];
+t=1;
+<span class="keyword">for</span> i=1:n
+    <span class="keyword">if</span> Age(i)== 0.49788
+        H(t)= sum(Drogue(i,:));
+        t = t+1;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+figure(6)
+boxplot(H)
+J=[];
+t=1;
+<span class="keyword">for</span> i=1:n
+    <span class="keyword">if</span> Age(i)== 1.09449
+        J(t)= sum(Drogue(i,:));
+        t = t+1;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+figure(7)
+boxplot(J)
+K=[];
+t=1;
+<span class="keyword">for</span> i=1:n
+    <span class="keyword">if</span> Age(i)== 1.82213
+        K(t)= sum(Drogue(i,:));
+        t = t+1;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+figure(8)
+boxplot(K)
+L=[];
+t=1;
+<span class="keyword">for</span> i=1:n
+    <span class="keyword">if</span> Age(i)== 2.59171
+        L(t)= sum(Drogue(i,:));
+        t = t+1;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+figure(9)
+boxplot(L)
+</pre><img vspace="5" hspace="5" src="Projet_M8_04.png" alt=""> <img vspace="5" hspace="5" src="Projet_M8_05.png" alt=""> <img vspace="5" hspace="5" src="Projet_M8_06.png" alt=""> <img vspace="5" hspace="5" src="Projet_M8_07.png" alt=""> <img vspace="5" hspace="5" src="Projet_M8_08.png" alt=""> <img vspace="5" hspace="5" src="Projet_M8_09.png" alt=""> <h2>Carte<a name="7"></a></h2><p>figure(1) worldmap world load coastlines [latcells, loncells] = polysplit(coastlat, coastlon); % numel(latcells) plotm(coastlat, coastlon) Australia = (Country==-0.09765); Canada = (Country==0.24923); NewZealand = (Country==-0.46841); Ireland = (Country==0.21128); UK = (Country==0.96082); USA = (Country==-0.57009); X = [sum(Australia) sum(Canada) sum(NewZealand) sum(Ireland) sum(UK) sum(USA)] label = struct('name', {'Australia.shp','Canada.shp','NZ.shp','Ireland.shp','UK.shp','USA.shp'}) for i=1:6     if X(i)&gt; 500         geoshow(label(i).name, 'FaceColor', 'red');       else if X(i)&gt;50               geoshow(label(i).name, 'FaceColor', [1 0.5 0]); %orange      else               geoshow(label(i).name, 'FaceColor', 'green');</p><pre>   end
+end
+end</pre><h2>R&eacute;gression multiple Drogue en fonction de Comportement<a name="8"></a></h2><pre class="codeinput">Drogue = [Alcool Amphet Amyl Benzos Caff Cannabis Choc Coke Crack Ecstasy Heroin Ketamine Legalh LSD Meth Mushrooms Nicotine VSA];
+Comportement =[Nscore Escore Oscore Ascore Cscore Impulsive SS];
+
+
+<span class="keyword">for</span> i=1:18
+        y = Drogue(:,i);
+        X = [Comportement ones(size(y))];
+        a = (X'*X)\(X'*y);
+        e = y-X*a;
+        SCT =sum((y-mean(y)).^2);
+        SCM =sum((X*a-mean(y)).^2); <span class="comment">% Variance Expliqu&eacute;e</span>
+        SCR = e'*e; <span class="comment">% Variance totale</span>
+        R2 = 1 - SCR/SCT <span class="comment">% coefficient de d&eacute;termination R2</span>
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">
+R2 =
+
+    0.0202
+
+
+R2 =
+
+    0.1620
+
+
+R2 =
+
+    0.0472
+
+
+R2 =
+
+    0.1523
+
+
+R2 =
+
+    0.0066
+
+
+R2 =
+
+    0.3145
+
+
+R2 =
+
+    0.0043
+
+
+R2 =
+
+    0.1535
+
+
+R2 =
+
+    0.0568
+
+
+R2 =
+
+    0.1928
+
+
+R2 =
+
+    0.0909
+
+
+R2 =
+
+    0.0818
+
+
+R2 =
+
+    0.2333
+
+
+R2 =
+
+    0.2073
+
+
+R2 =
+
+    0.1111
+
+
+R2 =
+
+    0.2201
+
+
+R2 =
+
+    0.1302
+
+
+R2 =
+
+    0.0844
+
+</pre><h2>R&eacute;gression multiple Comportement en fonction de Drogue<a name="9"></a></h2><pre class="codeinput"><span class="keyword">for</span> i=1:7
+        y = Comportement(:,i);
+        X = [Drogue ones(size(y))];
+        a = (X'*X)\(X'*y);
+        e = y-X*a;
+        SCT =sum((y-mean(y)).^2);
+        SCM =sum((X*a-mean(y)).^2); <span class="comment">% Variance Expliqu&eacute;e</span>
+        SCR = e'*e; <span class="comment">% Variance totale</span>
+        R2 = 1 - SCR/SCT <span class="comment">% coefficient de d&eacute;termination R2</span>
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">
+R2 =
+
+    0.0925
+
+
+R2 =
+
+    0.0487
+
+
+R2 =
+
+    0.2205
+
+
+R2 =
+
+    0.0620
+
+
+R2 =
+
+    0.1173
+
+
+R2 =
+
+    0.1477
+
+
+R2 =
+
+    0.2810
+
+</pre><h2>Diagnostic r&eacute;gression<a name="10"></a></h2><pre class="codeinput">Drogue = [Alcool Amphet Amyl Benzos Caff Cannabis Choc Coke Crack Ecstasy Heroin Ketamine Legalh LSD Meth Mushrooms Nicotine VSA];
+Comportement =[Nscore Escore Oscore Ascore Cscore Impulsive SS];
+<span class="comment">%Perturbateur = [Ketamine Cannabis Mushrooms LSD VSA];</span>
+<span class="comment">%Depresseur = [Alcool Heroin Benzos];</span>
+<span class="comment">%Stimulant = [Coke Ecstasy Amphet Amyl Choc Crack Caff Legalh Meth Nicotine];</span>
+n=length(Drogue);
+X=[ones(n,1) Drogue];
+ <span class="keyword">for</span> i=1:7
+    y=Comportement(:,i);<span class="comment">%ici y prend les comportements de 1 &agrave; 7</span>
+    [n,p] =size(X);
+    a = (X'*X)\(X'*y);
+    e = y-X*a;
+    s2 = e'*e/(n-p);  <span class="comment">% Calculs des r&eacute;sidus standardis&eacute;s</span>
+    R2 = 1 - e'*e/sum((y-mean(y)).^2);
+    h =diag(X*((X'*X)\(X')));
+    c = h./(1-h).^2/p.*e.^2/(e'*e); <span class="comment">% Contribution</span>
+    figure(i+9)
+    subplot(1,2,1)
+    plot(y,c,<span class="string">'o'</span>)<span class="comment">% pour obtenir le graphe des contributions de chaque comportement</span>
+    hold <span class="string">off</span>
+    xlabel(<span class="string">'Comportement'</span>);
+    ylabel(<span class="string">'contribution'</span>);
+    title(<span class="string">'Contributions en fonction du comportement'</span>);
+    hold <span class="string">off</span>
+    subplot(1,2,2)
+    plot(y,e,<span class="string">'o'</span>)<span class="comment">%graphe des erreurs pour chaque comportement</span>
+    hold <span class="string">on</span>
+    xlabel(<span class="string">'Comportement'</span>);
+    ylabel(<span class="string">'erreur'</span>);
+    title(<span class="string">'Erreurs en fonction du comportement'</span>)
+ <span class="keyword">end</span>;
+</pre><img vspace="5" hspace="5" src="Projet_M8_10.png" alt=""> <img vspace="5" hspace="5" src="Projet_M8_11.png" alt=""> <img vspace="5" hspace="5" src="Projet_M8_12.png" alt=""> <img vspace="5" hspace="5" src="Projet_M8_13.png" alt=""> <img vspace="5" hspace="5" src="Projet_M8_14.png" alt=""> <img vspace="5" hspace="5" src="Projet_M8_15.png" alt=""> <img vspace="5" hspace="5" src="Projet_M8_16.png" alt=""> <h2>ACP<a name="11"></a></h2><pre class="codeinput">Drogue = [Alcool Amphet Amyl Benzos Caff Cannabis Choc Coke Crack Ecstasy Heroin Ketamine Legalh LSD Meth Mushrooms Nicotine VSA];
+Comportement =[Nscore Escore Oscore Ascore Cscore Impulsive SS];
+<span class="comment">% figure(1)</span>
+<span class="comment">% plot(Drogue,Comportement(:,1),'or');</span>
+[n,p] = size(Drogue);
+Xc= Drogue - ones(n,1)*mean(Drogue);
+Xn = Xc./ (ones(n,1)*std(Drogue,1));
+C = (Xn'*Xn)/n;
+[V L] =eig(C);
+V; <span class="comment">%vecteurs propres</span>
+diag(L);<span class="comment">%valeurs propres</span>
+vp = sort(diag(L),<span class="string">'descend'</span>);
+vpc = 100*cumsum(vp)/sum(vp); <span class="comment">%pourcentage information</span>
+[vp vpc]
+</pre><pre class="codeoutput">
+ans =
+
+    6.0063   33.3683
+    1.5702   42.0916
+    1.2573   49.0766
+    1.0349   54.8260
+    0.9802   60.2716
+    0.8817   65.1698
+    0.8070   69.6530
+    0.7836   74.0061
+    0.7588   78.2219
+    0.5789   81.4379
+    0.5379   84.4262
+    0.5099   87.2587
+    0.4753   89.8995
+    0.4430   92.3606
+    0.4140   94.6605
+    0.3485   96.5966
+    0.3369   98.4682
+    0.2757  100.0000
+
+</pre><h2>Projections des nuages de points<a name="12"></a></h2><pre class="codeinput">U = Xn*V;
+V = V(:,end:-1:1);
+L = L(end:-1:1,end:-1:1);
+U = U(:,end:-1:1); <span class="comment">%tri ordre d&eacute;croissant</span>
+
+figure(17)
+plot3(U(:,1),U(:,2),U(:,3),<span class="string">'o'</span>); <span class="comment">%3 premi&egrave;res composantes principales</span>
+xlabel(<span class="string">'axe 17'</span>);
+ylabel(<span class="string">'axe 16'</span>);
+zlabel(<span class="string">'axe 15'</span>);
+title(<span class="string">'Representation du nuage avec trois axes de l''ACP'</span>)
+
+figure(18)
+plot3(U(:,1),U(:,3),U(:,2),<span class="string">'o'</span>); <span class="comment">%3 premi&egrave;res composantes principales</span>
+xlabel(<span class="string">'axe 17'</span>);
+ylabel(<span class="string">'axe 15'</span>);
+zlabel(<span class="string">'axe 16'</span>);
+title(<span class="string">'Representation du nuage avec trois axes de l''ACP'</span>)
+</pre><img vspace="5" hspace="5" src="Projet_M8_17.png" alt=""> <img vspace="5" hspace="5" src="Projet_M8_18.png" alt=""> <h2>Projections des variables<a name="13"></a></h2><pre class="codeinput">Vn = V*sqrt(L)/sqrt(n);
+
+figure(19)
+subplot(2,2,1)
+title(<span class="string">'Repr&eacute;sentation des variables avec deux axes de l''ACP'</span>)
+plot(Vn(:,1),Vn(:,2),<span class="string">'*'</span>);hold <span class="string">on</span>
+<span class="keyword">for</span> i=1:p
+text(Vn(i,1),Vn(i,2),[<span class="string">'v'</span> num2str(i)]);
+<span class="keyword">end</span>
+xlabel(<span class="string">'axe 17'</span>);
+ylabel(<span class="string">'axe 16'</span>);
+title(<span class="string">'Repr&eacute;sentation des variables avec deux axes de l''ACP'</span>)
+hold <span class="string">off</span>
+
+subplot(2,2,2)
+plot(Vn(:,1),Vn(:,3),<span class="string">'*'</span>);
+hold <span class="string">on</span>
+<span class="keyword">for</span> i=1:p
+    text(Vn(i,1),Vn(i,3),[<span class="string">'v'</span> num2str(i)]);
+<span class="keyword">end</span>
+xlabel(<span class="string">'axe 17'</span>);
+ylabel(<span class="string">'axe 15'</span>);
+title(<span class="string">'Repr&eacute;sentation des variables avec deux axes de l''ACP'</span>)
+hold <span class="string">off</span>
+
+subplot(2,2,3.5)
+plot(Vn(:,2),Vn(:,3),<span class="string">'*'</span>);hold <span class="string">on</span>
+<span class="keyword">for</span> i=1:p
+    text(Vn(i,2),Vn(i,3),[<span class="string">'v'</span> num2str(i)]);
+<span class="keyword">end</span>
+xlabel(<span class="string">'axe 16'</span>);
+ylabel(<span class="string">'axe 15'</span>);
+title(<span class="string">'Repr&eacute;sentation des variables avec deux axes de l''ACP'</span>)
+hold <span class="string">off</span>;
+</pre><img vspace="5" hspace="5" src="Projet_M8_19.png" alt=""> <h2>R&eacute;gression avec donn&eacute;es de l'ACP<a name="14"></a></h2><pre class="codeinput">y=Comportement;
+[n,o]=size(y);
+Yn = (y - ones(n,1)*mean(y))./(ones(n,1)*std(y));
+[b,f] = eig(Yn'*Yn);
+vp = sort(diag(f),<span class="string">'descend'</span>);   <span class="comment">% on ordonne les valeurs propres</span>
+[vp 100*cumsum(vp)/sum(vp)]
+I = Yn*b;
+Bn = (b*sqrt(f(1:o,1:o))/sqrt(n));
+L = I*Bn';
+</pre><pre class="codeoutput">
+ans =
+
+   1.0e+03 *
+
+    4.2142    0.0321
+    3.4191    0.0581
+    1.6557    0.0707
+    1.2596    0.0803
+    1.0470    0.0883
+    0.8886    0.0951
+    0.6478    0.1000
+
+</pre><pre class="codeinput">X=Drogue;
+[n,p]=size(X);
+Xn = (X - ones(n,1)*mean(X))./(ones(n,1)*std(X));
+[v,d] = eig(Xn'*Xn);
+vp = sort(diag(d),<span class="string">'descend'</span>);   <span class="comment">% on ordonne les valeurs propres</span>
+[vp 100*cumsum(vp)/sum(vp)]
+U = Xn*v;
+Vn = (v*sqrt(d(1:p,1:p))/sqrt(n));
+M = U*Vn';
+</pre><pre class="codeoutput">
+ans =
+
+   1.0e+04 *
+
+    1.1268    0.0033
+    0.2946    0.0042
+    0.2359    0.0049
+    0.1941    0.0055
+    0.1839    0.0060
+    0.1654    0.0065
+    0.1514    0.0070
+    0.1470    0.0074
+    0.1424    0.0078
+    0.1086    0.0081
+    0.1009    0.0084
+    0.0956    0.0087
+    0.0892    0.0090
+    0.0831    0.0092
+    0.0777    0.0095
+    0.0654    0.0097
+    0.0632    0.0098
+    0.0517    0.0100
+
+</pre><pre class="codeinput"><span class="keyword">for</span> i=1:7
+    Xl=[ones(n,1) M];
+    yl=L(:,i);
+    [al, s2, R2, dv] = ma_reg(Xl,yl);
+    plot(yl,dv(:,1),<span class="string">'o'</span>)
+    R2
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">
+R2 =
+
+    0.1181
+
+
+R2 =
+
+    0.0530
+
+
+R2 =
+
+    0.2619
+
+
+R2 =
+
+    0.1075
+
+
+R2 =
+
+    0.1728
+
+
+R2 =
+
+    0.2432
+
+
+R2 =
+
+    0.3150
+
+</pre><img vspace="5" hspace="5" src="Projet_M8_20.png" alt=""> <h2>R&eacute;gressions sans valeurs aberrantes (sans et avec ACP)<a name="17"></a></h2><pre class="codeinput"><span class="keyword">for</span> i=1:7
+    n=length(Drogue);
+    X=[ones(n,1) Drogue];
+    y=Comportement(:,i);
+    [al, s2, R21, dv] = ma_reg(X,y);
+    R21
+
+    plot(X,y,<span class="string">'o'</span>)
+
+    j=1;
+    k=1;
+    xs=[];
+    ys=[];
+    <span class="keyword">for</span> i=1:length(X)
+        <span class="keyword">if</span> dv(i,3)&lt;1.5e-06
+            xs(j,:)=X(i,:);
+            ys(j,:)=y(i);
+            j=j+1;
+
+        <span class="keyword">end</span>
+
+    <span class="keyword">end</span>
+    [al, s2, R22, dv] = ma_reg(xs,ys);
+    R22
+
+    X=xs(:,2:19);
+    [n,p]=size(X);
+    Xn = (X - ones(n,1)*mean(X))./(ones(n,1)*std(X));
+    [v,d] = eig(Xn'*Xn);
+    vp = sort(diag(d),<span class="string">'descend'</span>);   <span class="comment">% on ordonne les valeurs propres</span>
+    [vp 100*cumsum(vp)/sum(vp)];
+    U = Xn*v;
+    Vn = (v*sqrt(d(1:p,1:p))/sqrt(n));
+    M = U*Vn';
+    Xl=[ones(n,1) M];
+    [al, s2, R23, dv] = ma_reg(Xl,ys);
+    plot(ys,dv(:,1),<span class="string">'o'</span>)
+    R23
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">
+R21 =
+
+    0.0925
+
+
+R22 =
+
+    0.1301
+
+
+R23 =
+
+    0.1301
+
+
+R21 =
+
+    0.0487
+
+
+R22 =
+
+    0.0504
+
+
+R23 =
+
+    0.0504
+
+
+R21 =
+
+    0.2205
+
+
+R22 =
+
+    0.2548
+
+
+R23 =
+
+    0.2548
+
+
+R21 =
+
+    0.0620
+
+
+R22 =
+
+    0.0766
+
+
+R23 =
+
+    0.0766
+
+
+R21 =
+
+    0.1173
+
+
+R22 =
+
+    0.1597
+
+
+R23 =
+
+    0.1597
+
+
+R21 =
+
+    0.1477
+
+
+R22 =
+
+    0.1724
+
+
+R23 =
+
+    0.1724
+
+
+R21 =
+
+    0.2810
+
+
+R22 =
+
+    0.3468
+
+
+R23 =
+
+    0.3468
+
+</pre><img vspace="5" hspace="5" src="Projet_M8_21.png" alt=""> <h2>Comptage des apparitions de 0,1,2 etc.. pour chaque drogue<a name="18"></a></h2><pre class="codeinput">Drogue = [Alcool Amphet Amyl Benzos Caff Cannabis Choc Coke Crack Ecstasy Heroin Ketamine Legalh LSD Meth Mushrooms Nicotine VSA];
+
+Compte=0;
+<span class="keyword">for</span> i=1:1877
+    <span class="keyword">if</span> Drogue(i,1)==0 <span class="comment">%par exemple</span>
+       Compte=Compte+1;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+Compte
+</pre><pre class="codeoutput">
+Compte =
+
+    33
+
+</pre><h2>Test du chi2<a name="19"></a></h2><pre class="codeinput">O = [33 2272 999 27 445 2658 1020 3088 1092 1069 2424 428 1452
+    34 440 116 10 209 227 112 111 29 257 247 193 199
+    68 477 230 24 276 376 232 231 195 175 354 203 133
+    197 287 234 59 263 316 275 194 321 213 420 184 59
+    284 99 119 106 433 107 154 64 109 96 164 106 13
+    758 75 84 271 865 49 63 49 64 55 87 156 14
+    503 104 95 1380 1263 21 21 17 67 12 76 607 7];
+
+m =sum(O);
+n =sum(O,2);
+T = n*m/sum(n),
+D =sum(sum((O-T).^2./T))
+ddl = (length(n)-1)*(length(m)-1)
+pval = 1 - cdf(<span class="string">'chi2'</span>,D,ddl)
+</pre><pre class="codeoutput">
+T =
+
+   1.0e+03 *
+
+  Columns 1 through 7
+
+    0.9443    1.8887    0.9443    0.9443    1.8887    1.8887    0.9443
+    0.1213    0.2425    0.1213    0.1213    0.2425    0.2425    0.1213
+    0.1651    0.3303    0.1651    0.1651    0.3303    0.3303    0.1651
+    0.1678    0.3356    0.1678    0.1678    0.3356    0.3356    0.1678
+    0.1029    0.2059    0.1029    0.1029    0.2059    0.2059    0.1029
+    0.1438    0.2876    0.1438    0.1438    0.2876    0.2876    0.1438
+    0.2317    0.4634    0.2317    0.2317    0.4634    0.4634    0.2317
+
+  Columns 8 through 13
+
+    1.8887    0.9443    0.9443    1.8977    0.9443    0.9443
+    0.2425    0.1213    0.1213    0.2437    0.1213    0.1213
+    0.3303    0.1651    0.1651    0.3319    0.1651    0.1651
+    0.3356    0.1678    0.1678    0.3372    0.1678    0.1678
+    0.2059    0.1029    0.1029    0.2069    0.1029    0.1029
+    0.2876    0.1438    0.1438    0.2890    0.1438    0.1438
+    0.4634    0.2317    0.2317    0.4656    0.2317    0.2317
+
+
+D =
+
+   2.2387e+04
+
+
+ddl =
+
+    72
+
+
+pval =
+
+     0
+
+</pre><h2>Test corr&eacute;lation Drogue<a name="20"></a></h2><pre class="codeinput">Drogue = [Alcool Amphet Amyl Benzos Caff Cannabis Choc Coke Crack Ecstasy Heroin Ketamine Legalh LSD Meth Mushrooms Nicotine VSA];
+
+y = Drogue(:,1); <span class="comment">%par exemple</span>
+X = [Drogue(:,2:17) ones(size(y))];
+[a, s2, R2, dv] = ma_reg(X,y);
+R2
+</pre><pre class="codeoutput">
+R2 =
+
+    0.0451
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Données projet nettoyées
+close all
+clear all
+load('Project_sans_Semer.mat') 
+
+%%  histogramme variable Age
+figure(1)
+C = categorical(Age,[-0.95197 -0.07854 0.49788 1.09449 1.82213 2.59171],{'18-24','25-34','35-44','45-54','55-64','65+'});
+h = histogram(C,'BarWidth',0.5);
+
+%% camembert variable Drogue
+figure(2)
+X = [sum(Alcool) sum(Amphet) sum(Amyl) sum(Benzos) sum(Caff) sum(Cannabis) sum(Choc) sum(Coke) sum(Crack) sum(Ecstasy) sum(Heroin) sum(Ketamine) sum(Legalh), sum(LSD) sum(Meth) sum(Mushrooms) sum(Nicotine) sum(VSA)];
+labels= {'Alcohol','Amphet','Amyl','Benzos','Caff','Cannabis','Choc','Coke','Crack','Ecstasy','Heroin','Ketamine','Legalh','LSD','Meth','Mushrooms','Nicotine','VSA'};
+p = pie(X,labels);
+%%
+n=size(Age);
+%D = categorical(Gender,[0.48246 -0.48246],{'Femme','Homme'})
+%h = histogram(D,'BarWidth',0.5)
+%% histogramme variable Genre
+
+Hommes=[];
+Femmes=[];
+AgeHomme=[];
+AgeFemme=[];
+for i=1:n
+    if Gender(i)<0 
+        Hommes(i)=1;
+        AgeHomme(i)=Age(i);
+    else
+        Femmes(i)=1;
+        AgeFemme(i)=Age(i);
+    end
+end
+figure(3)
+D=categorical(AgeHomme,[-0.95197 -0.07854 0.49788 1.09449 1.82213 2.59171],{'18-24','25-34','35-44','45-54','55-64','65+'});
+E=categorical(AgeFemme,[-0.95197 -0.07854 0.49788 1.09449 1.82213 2.59171],{'18-24','25-34','35-44','45-54','55-64','65+'});
+histogram(D,'BarWidth',0.5);hold on
+histogram(E,'BarWidth',0.5,'facealpha',.4);
+legend('Hommes','Femmes', 'Location', 'NE')
+%% Boites à moustache
+Drogue = [Alcool Amphet Amyl Benzos Caff Cannabis Choc Coke Crack Ecstasy Heroin Legalh LSD Meth Mushrooms Nicotine VSA];    
+F = [];
+t= 1;
+figure(4)
+boxplot(sum(Drogue'))
+for i=1:n
+    if Age(i)== -0.95197
+        F(t)= sum(Drogue(i,:));
+        t = t+1;
+    end
+end
+boxplot(F); hold on
+G=[];
+t=1;
+for i=1:n
+    if Age(i)== -0.07854
+        G(t)= sum(Drogue(i,:));
+        t = t+1;
+    end
+end
+figure(5)
+boxplot(G)
+H=[];
+t=1;
+for i=1:n
+    if Age(i)== 0.49788
+        H(t)= sum(Drogue(i,:));
+        t = t+1;
+    end
+end
+figure(6)
+boxplot(H)
+J=[];
+t=1;
+for i=1:n
+    if Age(i)== 1.09449
+        J(t)= sum(Drogue(i,:));
+        t = t+1;
+    end
+end
+figure(7)
+boxplot(J)
+K=[];
+t=1;
+for i=1:n
+    if Age(i)== 1.82213
+        K(t)= sum(Drogue(i,:));
+        t = t+1;
+    end
+end
+figure(8)
+boxplot(K)
+L=[];
+t=1;
+for i=1:n
+    if Age(i)== 2.59171
+        L(t)= sum(Drogue(i,:));
+        t = t+1;
+    end
+end
+figure(9)
+boxplot(L)
+%% Carte
+% figure(1)
+% worldmap world
+% load coastlines
+% [latcells, loncells] = polysplit(coastlat, coastlon);
+% % numel(latcells)
+% plotm(coastlat, coastlon)
+% Australia = (Country==-0.09765);
+% Canada = (Country==0.24923);
+% NewZealand = (Country==-0.46841);
+% Ireland = (Country==0.21128);
+% UK = (Country==0.96082);
+% USA = (Country==-0.57009);
+% X = [sum(Australia) sum(Canada) sum(NewZealand) sum(Ireland) sum(UK) sum(USA)]
+% label = struct('name', {'Australia.shp','Canada.shp','NZ.shp','Ireland.shp','UK.shp','USA.shp'})
+% for i=1:6
+%     if X(i)> 500
+%         geoshow(label(i).name, 'FaceColor', 'red');
+%       else if X(i)>50
+%               geoshow(label(i).name, 'FaceColor', [1 0.5 0]); %orange
+%      else 
+%               geoshow(label(i).name, 'FaceColor', 'green'); 
+%           
+%     end
+% end
+% end
+%% Régression multiple Drogue en fonction de Comportement
+Drogue = [Alcool Amphet Amyl Benzos Caff Cannabis Choc Coke Crack Ecstasy Heroin Ketamine Legalh LSD Meth Mushrooms Nicotine VSA];    
+Comportement =[Nscore Escore Oscore Ascore Cscore Impulsive SS];
+
+
+for i=1:18
+        y = Drogue(:,i);
+        X = [Comportement ones(size(y))];
+        a = (X'*X)\(X'*y);
+        e = y-X*a;
+        SCT =sum((y-mean(y)).^2);
+        SCM =sum((X*a-mean(y)).^2); % Variance Expliquée
+        SCR = e'*e; % Variance totale
+        R2 = 1 - SCR/SCT % coefficient de détermination R2
+end
+%% Régression multiple Comportement en fonction de Drogue
+for i=1:7
+        y = Comportement(:,i);
+        X = [Drogue ones(size(y))];
+        a = (X'*X)\(X'*y);
+        e = y-X*a;
+        SCT =sum((y-mean(y)).^2);
+        SCM =sum((X*a-mean(y)).^2); % Variance Expliquée
+        SCR = e'*e; % Variance totale
+        R2 = 1 - SCR/SCT % coefficient de détermination R2
+end
+
+%% Diagnostic régression
+Drogue = [Alcool Amphet Amyl Benzos Caff Cannabis Choc Coke Crack Ecstasy Heroin Ketamine Legalh LSD Meth Mushrooms Nicotine VSA];    
+Comportement =[Nscore Escore Oscore Ascore Cscore Impulsive SS];
+%Perturbateur = [Ketamine Cannabis Mushrooms LSD VSA];
+%Depresseur = [Alcool Heroin Benzos];
+%Stimulant = [Coke Ecstasy Amphet Amyl Choc Crack Caff Legalh Meth Nicotine];
+n=length(Drogue);
+X=[ones(n,1) Drogue];
+ for i=1:7
+    y=Comportement(:,i);%ici y prend les comportements de 1 à 7
+    [n,p] =size(X);
+    a = (X'*X)\(X'*y);
+    e = y-X*a;
+    s2 = e'*e/(n-p);  % Calculs des résidus standardisés
+    R2 = 1 - e'*e/sum((y-mean(y)).^2);
+    h =diag(X*((X'*X)\(X')));
+    c = h./(1-h).^2/p.*e.^2/(e'*e); % Contribution
+    figure(i+9)
+    subplot(1,2,1)
+    plot(y,c,'o')% pour obtenir le graphe des contributions de chaque comportement
+    hold off
+    xlabel('Comportement');
+    ylabel('contribution');
+    title('Contributions en fonction du comportement');
+    hold off
+    subplot(1,2,2)
+    plot(y,e,'o')%graphe des erreurs pour chaque comportement
+    hold on
+    xlabel('Comportement');
+    ylabel('erreur');
+    title('Erreurs en fonction du comportement')
+ end; 
+ %% ACP
+Drogue = [Alcool Amphet Amyl Benzos Caff Cannabis Choc Coke Crack Ecstasy Heroin Ketamine Legalh LSD Meth Mushrooms Nicotine VSA];    
+Comportement =[Nscore Escore Oscore Ascore Cscore Impulsive SS];
+% figure(1)
+% plot(Drogue,Comportement(:,1),'or');
+[n,p] = size(Drogue);
+Xc= Drogue - ones(n,1)*mean(Drogue);
+Xn = Xc./ (ones(n,1)*std(Drogue,1));
+C = (Xn'*Xn)/n;
+[V L] =eig(C);
+V; %vecteurs propres
+diag(L);%valeurs propres
+vp = sort(diag(L),'descend');   
+vpc = 100*cumsum(vp)/sum(vp); %pourcentage information
+[vp vpc]
+
+%% Projections des nuages de points
+U = Xn*V;
+V = V(:,end:-1:1);
+L = L(end:-1:1,end:-1:1);
+U = U(:,end:-1:1); %tri ordre décroissant
+
+figure(17) 
+plot3(U(:,1),U(:,2),U(:,3),'o'); %3 premières composantes principales 
+xlabel('axe 17');
+ylabel('axe 16');
+zlabel('axe 15');
+title('Representation du nuage avec trois axes de l''ACP')
+
+figure(18)
+plot3(U(:,1),U(:,3),U(:,2),'o'); %3 premières composantes principales 
+xlabel('axe 17');
+ylabel('axe 15');
+zlabel('axe 16');
+title('Representation du nuage avec trois axes de l''ACP')
+%% Projections des variables
+Vn = V*sqrt(L)/sqrt(n);
+
+figure(19)
+subplot(2,2,1)
+title('Représentation des variables avec deux axes de l''ACP')
+plot(Vn(:,1),Vn(:,2),'*');hold on
+for i=1:p
+text(Vn(i,1),Vn(i,2),['v' num2str(i)]);
+end
+xlabel('axe 17');
+ylabel('axe 16');
+title('Représentation des variables avec deux axes de l''ACP')
+hold off
+
+subplot(2,2,2)
+plot(Vn(:,1),Vn(:,3),'*');
+hold on
+for i=1:p
+    text(Vn(i,1),Vn(i,3),['v' num2str(i)]);
+end
+xlabel('axe 17');
+ylabel('axe 15');
+title('Représentation des variables avec deux axes de l''ACP')
+hold off
+
+subplot(2,2,3.5)
+plot(Vn(:,2),Vn(:,3),'*');hold on
+for i=1:p
+    text(Vn(i,2),Vn(i,3),['v' num2str(i)]);
+end
+xlabel('axe 16');
+ylabel('axe 15');
+title('Représentation des variables avec deux axes de l''ACP')
+hold off;
+
+%% Régression avec données de l'ACP
+y=Comportement;
+[n,o]=size(y);
+Yn = (y - ones(n,1)*mean(y))./(ones(n,1)*std(y));
+[b,f] = eig(Yn'*Yn);
+vp = sort(diag(f),'descend');   % on ordonne les valeurs propres
+[vp 100*cumsum(vp)/sum(vp)]
+I = Yn*b;
+Bn = (b*sqrt(f(1:o,1:o))/sqrt(n));
+L = I*Bn';
+%% 
+X=Drogue;
+[n,p]=size(X);
+Xn = (X - ones(n,1)*mean(X))./(ones(n,1)*std(X));
+[v,d] = eig(Xn'*Xn);
+vp = sort(diag(d),'descend');   % on ordonne les valeurs propres
+[vp 100*cumsum(vp)/sum(vp)]
+U = Xn*v;
+Vn = (v*sqrt(d(1:p,1:p))/sqrt(n));
+M = U*Vn';
+%%
+for i=1:7
+    Xl=[ones(n,1) M];
+    yl=L(:,i);
+    [al, s2, R2, dv] = ma_reg(Xl,yl);
+    plot(yl,dv(:,1),'o')
+    R2
+end
+
+%% Régressions sans valeurs aberrantes (sans et avec ACP)
+for i=1:7
+    n=length(Drogue);
+    X=[ones(n,1) Drogue];
+    y=Comportement(:,i);
+    [al, s2, R21, dv] = ma_reg(X,y);
+    R21
+
+    plot(X,y,'o')
+
+    j=1;
+    k=1;
+    xs=[];
+    ys=[];
+    for i=1:length(X)
+        if dv(i,3)<1.5e-06
+            xs(j,:)=X(i,:);
+            ys(j,:)=y(i);
+            j=j+1;
+
+        end
+
+    end
+    [al, s2, R22, dv] = ma_reg(xs,ys);
+    R22
+    
+    X=xs(:,2:19);
+    [n,p]=size(X);
+    Xn = (X - ones(n,1)*mean(X))./(ones(n,1)*std(X));
+    [v,d] = eig(Xn'*Xn);
+    vp = sort(diag(d),'descend');   % on ordonne les valeurs propres
+    [vp 100*cumsum(vp)/sum(vp)];
+    U = Xn*v;
+    Vn = (v*sqrt(d(1:p,1:p))/sqrt(n));
+    M = U*Vn';
+    Xl=[ones(n,1) M];
+    [al, s2, R23, dv] = ma_reg(Xl,ys);
+    plot(ys,dv(:,1),'o')
+    R23
+end
+
+%% Comptage des apparitions de 0,1,2 etc.. pour chaque drogue
+Drogue = [Alcool Amphet Amyl Benzos Caff Cannabis Choc Coke Crack Ecstasy Heroin Ketamine Legalh LSD Meth Mushrooms Nicotine VSA];    
+
+Compte=0;
+for i=1:1877 
+    if Drogue(i,1)==0 %par exemple
+       Compte=Compte+1;
+    end
+end
+Compte
+%% Test du chi2
+O = [33 2272 999 27 445 2658 1020 3088 1092 1069 2424 428 1452
+    34 440 116 10 209 227 112 111 29 257 247 193 199 
+    68 477 230 24 276 376 232 231 195 175 354 203 133
+    197 287 234 59 263 316 275 194 321 213 420 184 59
+    284 99 119 106 433 107 154 64 109 96 164 106 13
+    758 75 84 271 865 49 63 49 64 55 87 156 14 
+    503 104 95 1380 1263 21 21 17 67 12 76 607 7];
+
+m =sum(O);
+n =sum(O,2);
+T = n*m/sum(n),
+D =sum(sum((O-T).^2./T))
+ddl = (length(n)-1)*(length(m)-1)
+pval = 1 - cdf('chi2',D,ddl)
+
+%% Test corrélation Drogue
+Drogue = [Alcool Amphet Amyl Benzos Caff Cannabis Choc Coke Crack Ecstasy Heroin Ketamine Legalh LSD Meth Mushrooms Nicotine VSA];    
+
+y = Drogue(:,1); %par exemple
+X = [Drogue(:,2:17) ones(size(y))];
+[a, s2, R2, dv] = ma_reg(X,y);
+R2
+
+##### SOURCE END #####
+--></body></html>
